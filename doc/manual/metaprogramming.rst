@@ -972,8 +972,8 @@ of the generated function was only executed once here,
 for the specific set of argument types, and the result was cached.
 After that, for this example, the expression returned from the generated
 function on the first invocation was re-used as the method body.
-The actual caching behavior is an implementation-defined performance optimization,
-so it is invalid to depend to closely on this behavior, however.
+However, the actual caching behavior is an implementation-defined performance optimization,
+so it is invalid to depend too closely on this behavior.
 
 The number of times a generated function is generated *might* be only once,
 but it *might* also be more often, or appear to not happen at all.
@@ -989,7 +989,7 @@ The example generated function ``foo`` above did not do anything a normal
 function ``foo(x) = x * x`` could not do (except printing the type on the
 first invocation, and incurring higher overhead).
 However, the power of a generated function lies in its ability to compute
-different quoted expression depending on the types passed to it:
+different quoted expressions depending on the types passed to it:
 
 .. doctest::
 
