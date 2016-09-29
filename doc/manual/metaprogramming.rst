@@ -909,12 +909,12 @@ ordinary functions:
 
 2. In the body of the generated function you only have access to the
    *types* of the arguments -- not their values -- and any function that
-   was defined *before* the definition of generated function.
+   was defined *before* the definition of the generated function.
 
 3. Instead of calculating something or performing some action, you return
    a *quoted expression* which, when evaluated, does what you want.
 
-4. The function must not have any side-effects or examine any non-constant
+4. Generated functions must not have any side-effects or examine any non-constant
    global state (including, for example, IO, locks, or non-local dictionaries).
    In other words, they must be completely pure.
    Due to an implementation limitation,
@@ -1034,7 +1034,7 @@ These examples are hopefully helpful to illustrate how generated functions
 work, both in the definition end and at the call site; however, *don't
 copy them*, for the following reasons:
 
-* the ``foo`` function has side-effects, and it is undefined exactly when,
+* the ``foo`` function has side-effects (the call to `Core.println`), and it is undefined exactly when,
   how often or how many times these side-effects will occur
 * the ``bar`` function solves a problem that is better solved with multiple
   dispatch - defining ``bar(x) = x`` and ``bar(x::Integer) = x ^ 2`` will do
@@ -1069,7 +1069,7 @@ Some operations that should not be attempted include:
      This condition is relaxed for incrementally-loaded precompiled modules to
      allow calling any function in the module.
 
-Alright, now that we have a better understanding for how generated functions
+Alright, now that we have a better understanding of how generated functions
 work, let's use them to build some more advanced (and valid) functionality...
 
 An advanced example
